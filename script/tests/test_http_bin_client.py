@@ -18,7 +18,7 @@ def test_get_ip_success(mock_http_bin_client: Mock) -> None:
     client = HttpBinClient()
     got = client.get_ip()
 
-    assert got != want
+    assert got == want
 
 
 @patch("mymodule.lib.http_bin_client.HttpBinClient.get_ip")
