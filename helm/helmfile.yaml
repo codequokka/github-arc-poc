@@ -1,0 +1,6 @@
+---
+environments:
+  "{{ .Environment.Name }}": {}
+
+helmfiles:
+  - path: github-arc/helmfile.yaml

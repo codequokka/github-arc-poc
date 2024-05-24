@@ -1,0 +1,13 @@
+# Prod
+-r requirements.txt
+
+# Dev
+ipython
+black
+mypy
+ruff
+pytest
+pytest-cov
+pytest-github-actions-annotate-failures
+poethepoet
+types-requests

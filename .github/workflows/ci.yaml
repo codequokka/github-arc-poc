@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: arc-runner-set
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        working-directory: script
+        run: pip install -r requirements-dev.txt
+
+      - name: Run lint
+        working-directory: script
+        run: ruff check --output-format=github
+
+      - name: Run test
+        working-directory: script
+        run: pytest -v
