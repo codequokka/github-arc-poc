@@ -3,7 +3,6 @@
   hosts: misc_servers
   gather_facts: false
   become: true
-  # connection: local
   tasks:
     - name: Install the zsh
       ansible.builtin.apt:
@@ -14,3 +13,4 @@
     - name: Check the zsh is installed
       ansible.builtin.command:
         cmd: zsh --version
+      changed_when: false
