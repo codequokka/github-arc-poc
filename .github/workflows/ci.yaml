@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - .github/workflows/ci.yml
-      - script/**
+      - "script/**"
   workflow_dispatch:
 
 jobs:
