@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - .github/workflows/cd.yml
-      - ansible/*
+      - ansible/**
   workflow_dispatch:
 
 jobs:
