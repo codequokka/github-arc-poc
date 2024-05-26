@@ -1,0 +1,9 @@
+---
+- name: Setup/Test the web servers
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Install nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
