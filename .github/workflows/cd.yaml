@@ -1,4 +1,4 @@
-name: CI
+name: CD
 
 on:
   push:
@@ -22,4 +22,4 @@ jobs:
 
       - name: Run playbook
         working-directory: ansible
-        run: ansible --version
+        run: ansible-playbook -i inventories/poc/hosts.ini playbooks/misc_servers.yml
