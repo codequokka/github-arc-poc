@@ -14,8 +14,3 @@
       ansible.builtin.command:
         cmd: zsh --version
       changed_when: false
-
-    - name: Test task
-      ansible.builtin.command:
-        cmd: zsh --version
-      changed_when: false
