@@ -6,7 +6,7 @@ from requests import Response
 
 def get_ip() -> Response:
     client = HttpBinClient()
-    response = client.get_ip()
+    response = client.get(path="ip")
     return response
 
 

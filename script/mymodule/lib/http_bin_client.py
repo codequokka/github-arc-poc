@@ -30,5 +30,5 @@ class HttpBinClient(object):
         return self.session.request(method=method, url=f"{self._BASE_URL}/{path}")
 
     @handle_request_exceptions
-    def get_ip(self) -> Response:
-        return self._send_request(method="GET", path="ip")
+    def get(self, path: str) -> Response:
+        return self._send_request(method="GET", path=path)
