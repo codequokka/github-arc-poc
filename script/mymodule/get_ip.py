@@ -13,4 +13,3 @@ def get_ip() -> Response:
 if __name__ == "__main__":
     response = get_ip()
     print(response.json())
-    print("usagi")
