@@ -21,15 +21,14 @@ def handle_request_exceptions(func: Callable[..., Response]) -> Callable[..., Re
 
 
 class HttpBinClient(object):
-    BASE_URL = "https://httpbin.org"
+    _BASE_URL = "https://httpbin.org"
 
     def __init__(self) -> None:
         self.session = requests.Session()
 
-    def _make_request(self, endpoint: str) -> Response:
-        url = f"{self.BASE_URL}/{endpoint}"
-        return self.session.get(url)
+    def _send_request(self, path: str, method: str) -> Response:
+        return self.session.request(method=method, url=f"{self._BASE_URL}/{path}")
 
     @handle_request_exceptions
     def get_ip(self) -> Response:
-        return self._make_request("ip")
+        return self._send_request(method="GET", path="ip")
