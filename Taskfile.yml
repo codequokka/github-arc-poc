@@ -1,0 +1,15 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  default:
+    desc: List all tasks
+    cmds:
+      - task --list-all
+
+  check-required-bins-are-executables:
+    desc: Check if required binaries are executable
+    cmds:
+      - docker version
+      - bin/kind version

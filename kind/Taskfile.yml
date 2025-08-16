@@ -1,0 +1,28 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  K8S_CLUSTER_NAME: github-arc-poc
+
+tasks:
+  default:
+    desc: List all tasks
+    cmds:
+      - task --list-all
+
+  create-k8s-cluster:
+    desc: Create a k8s cluster
+    cmds:
+      - kind create cluster --config=config.yaml
+
+  check-k8s-cluster-is-avalilable:
+    desc: Check if the k8s cluster is available
+    cmds:
+      - kind get clusters
+      - kubectl get nodes
+
+  delete-k8s-cluster:
+    desc: Delete the k8s cluster
+    cmds:
+      - kind delete cluster --name "{{.K8S_CLUSTER_NAME}}"
