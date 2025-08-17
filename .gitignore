@@ -1,2 +1,5 @@
 # Gemini CLI
 .env
+
+# Serena
+.serena/
