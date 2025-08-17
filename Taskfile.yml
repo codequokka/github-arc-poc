@@ -11,5 +11,11 @@ tasks:
   check-required-bins-are-executables:
     desc: Check if required binaries are executable
     cmds:
-      - docker version
+      - bin/age --version
+      - bin/age-keygen --version
+      - bin/helm version
+      - bin/helmfile version
       - bin/kind version
+      - bin/sops --version
+      - bin/task --version
+      - docker version
