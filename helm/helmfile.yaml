@@ -1,6 +1,6 @@
 ---
 environments:
-  "{{ .Environment.Name }}": {}
+  poc: {}
 
 helmfiles:
-  - path: github-arc/helmfile.yaml
+  - path: gha-runner-scale-set-controller/helmfile.yaml

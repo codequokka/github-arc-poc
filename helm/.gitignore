@@ -1,2 +1,5 @@
 # Age
 key.txt
+
+# Sops
+.sops.yaml

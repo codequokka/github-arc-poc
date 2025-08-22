@@ -1,53 +1,32 @@
 # Deploy the Github ARC
 
 ## How to deploy
-- Check deployment prerequisites
-```bash
-❯ cd helm
-
-❯ source .envrc
-
-❯ helm version
-version.BuildInfo{Version:"v3.14.4", GitCommit:"81c902a123462fd4052bc5e9aa9c513c4c8fc142", GitTreeState:"clean", GoVersion:"go1.21.9"}
-
-❯ helmfile version
-
-▓▓▓ helmfile
-
-  Version            0.163.1
-  Git Commit         8aa524c
-  Build Date         25 Mar 24 23:48 UTC (2 weeks ago)
-  Commit Date        25 Mar 24 23:45 UTC (2 weeks ago)
-  Dirty Build        no
-  Go version         1.22.1
-  Compiler           gc
-  Platform           linux/amd64
-
-❯ age --version
-v1.1.1
-
-❯ age-keygen --version
-v1.1.1
-```
-
 - Install helm plugins
 ```bash
-❯ helm plugin install https://github.com/databus23/helm-diff
+❯ task install-helm-plugin
 <omit>
 
-❯ helm plugin install https://github.com/jkroepke/helm-secrets
-<omit>
-
-❯ helm plugin list
-NAME    VERSION         DESCRIPTION
-diff    3.9.5           Preview helm upgrade changes as a diff
-secrets 4.6.1-dev       This plugin provides secrets values encryption for Helm charts secure storing
+❯ task check-helm-plugins-are-installed
+task: [check-helm-plugins-are-installed] helm plugin list | egrep '^diff'
+diff    3.12.5          Preview helm upgrade changes as a diff
+task: [check-helm-plugins-are-installed] helm plugin list | egrep '^secrets'
+secrets 4.7.0-dev       This plugin provides secrets values encryption for Helm charts secure storing
 ```
 
 - Create your encryption key
 ```bash
-❯ age-keygen -o key.txt
+❯ task generate-encryption-key
+task: [generate-encryption-key] age-keygen -o key.txt
 Public key: <your-public-key>
+```
+
+- Create sops setting file
+```bash
+❯ vi .sops.yaml
+```
+```yaml
+creation_rules:
+  - age: <your-public-key>
 ```
 
 - Set your Github repo

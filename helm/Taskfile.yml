@@ -1,0 +1,49 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  K8S_CLUSTER_NAME: github-arc-poc
+
+tasks:
+  default:
+    desc: List all tasks
+    cmds:
+      - task --list-all
+
+  install-helm-plugins:
+    desc: Install helm plugins
+    cmds:
+      - helm plugin install https://github.com/databus23/helm-diff
+      - helm plugin install https://github.com/jkroepke/helm-secrets
+
+  check-helm-plugins-are-installed:
+    desc: Check if helm plugins are installed
+    cmds:
+      - helm plugin list | egrep '^diff'
+      - helm plugin list | egrep '^secrets'
+
+  generate-encryption-key:
+    desc: Generate the encryption key
+    cmds:
+      - age-keygen -o key.txt
+
+  encrypt-secret-file:
+    desc: Encrpyt the secret file
+    cmds:
+      - helm secrets encrypt -i {{.CLI_ARGS}}
+
+  decrypt-secret-file:
+    desc: Decrypt the secret file
+    cmds:
+      - helm secrets decrypt -i {{.CLI_ARGS}}
+
+  dryrun-helm-charts:
+    desc: Dryrun helm charts
+    cmds:
+      - helmfile diff --environment $HELM_ENVIRONMENT {{.CLI_ARGS}}
+
+  apply-helm-charts:
+    desc: Apply helm charts
+    cmds:
+      - helmfile apply --environment $HELM_ENVIRONMENT {{.CLI_ARGS}}
