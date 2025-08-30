@@ -4,3 +4,4 @@ environments:
 
 helmfiles:
   - path: gha-runner-scale-set-controller/helmfile.yaml
+  - path: gha-runner-scale-set/helmfile.yaml

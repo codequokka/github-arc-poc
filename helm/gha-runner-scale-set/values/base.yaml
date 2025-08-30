@@ -1,6 +1,4 @@
 ---
-githubConfigUrl: https://github.com/codequokka/github-arc-poc
-
 controllerServiceAccount:
   namespace: arc-systems
   name: arc-systems-gha-rs-controller
