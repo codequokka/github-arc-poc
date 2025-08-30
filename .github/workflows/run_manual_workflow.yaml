@@ -7,10 +7,14 @@ on:
         description: Your name
         required: true
         default: World
+      runner_scale_set:
+        description: Select runner scale set
+        required: true
+        default: ar-github-arc-poc-poc-m1
 
 jobs:
   say-hello:
-    runs-on: ar-github-arc-poc-poc-m1
+    runs-on: ${{ github.event.inputs.runner_scale_set }}
     steps:
       - name: Print a greeting
         run: echo Hello, ${{ github.event.inputs.name }}!
