@@ -1,0 +1,22 @@
+---
+environments:
+  poc: {}
+---
+releases:
+  - name: ar-github-arc-poc-poc-m1  # ar-<repo_name>-<env_name>-<spec_class>
+    namespace: ar-github-arc-poc     # ar-<repo_name>-<env_name>
+    chart: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
+    version: 0.12.1
+    disableValidationOnInstall: true
+    values:
+      - values/base.yaml
+      - values/{{ .Environment.Name }}.yaml
+      - values/github-arc-poc/base.yaml
+      - values/github-arc-poc/{{ .Environment.Name }}.yaml
+      - values/github-arc-poc/{{ .Environment.Name }}-m1.yaml
+    secrets:
+      - secrets/base.yaml
+      - secrets/{{ .Environment.Name }}.yaml
+      - secrets/github-arc-poc/base.yaml
+      - secrets/github-arc-poc/{{ .Environment.Name }}.yaml
+      - secrets/github-arc-poc/{{ .Environment.Name }}-m1.yaml

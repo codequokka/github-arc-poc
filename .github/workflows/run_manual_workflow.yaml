@@ -1,0 +1,16 @@
+name: run_mannual_workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: Your name
+        required: true
+        default: World
+
+jobs:
+  say-hello:
+    runs-on: ar-github-arc-poc-poc-m1
+    steps:
+      - name: Print a greeting
+        run: echo Hello, ${{ github.event.inputs.name }}!
